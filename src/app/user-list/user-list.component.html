@@ -1,0 +1,24 @@
+<table class="table table-bordered table-striped table-hover">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        
+        <tr *ngFor="let item of liUsers">
+            <td>{{item.name}}</td>
+            <td>{{item.email}}</td>
+            <td><input type="submit" value="Add Role" class="btn btn-primary" (click)="AddRole(item.id)"></td>
+        </tr>
+        
+    </tbody>
+</table>

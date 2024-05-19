@@ -1,0 +1,12 @@
+<div class="mb-3">
+    <label  class="form-label">Code</label>
+    <input type="text" class="form-control" [(ngModel)]="Code" placeholder="country code">
+  </div>
+  <div class="mb-3">
+    <label  class="form-label">Name</label>
+    <input type="text" class="form-control" [(ngModel)]="Name" placeholder="country name">
+  </div>
+  <div class="mb-3">
+    <input type="button" value="Save" *ngIf="IsEdit==false" class="btn btn-primary" (click)="Save()">
+    <input type="button" value="Update" *ngIf="IsEdit==true" class="btn btn-primary" (click)="Update()">
+  </div>

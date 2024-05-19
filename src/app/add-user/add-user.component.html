@@ -1,0 +1,19 @@
+<div class="mb-3">
+    <label  class="form-label">Name</label>
+    <input type="text" class="form-control" [(ngModel)]="name" placeholder="name">
+  </div>
+  <div class="mb-3">
+    <label  class="form-label">DOB</label>
+    <input type="date" class="form-control" [(ngModel)]="dob">
+  </div>
+  <div class="mb-3">
+    <label  class="form-label">Email</label>
+    <input type="text" class="form-control" [(ngModel)]="email">
+  </div>
+  <div class="mb-3">
+    <label  class="form-label">Password</label>
+    <input type="password" class="form-control" [(ngModel)]="password">
+  </div>
+  <div class="mb-3">
+    <input type="button" value="Create Account" class="btn btn-primary" (click)="save()">
+  </div>

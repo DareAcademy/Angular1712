@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Country } from '../Models/Country';
 import { CountryService } from '../Servicies/CountryService';
 import { ActivatedRoute } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-new-country',
@@ -24,12 +25,8 @@ export class NewCountryComponent implements OnInit {
       this.countryService.Load(this.Id).subscribe({
         next:data=>{
           debugger
-          console.log("success")
           this.Code=data.code
           this.Name=data.name
-        },
-        error:err=>{
-          console.log("error")
         }
 
       })
@@ -47,10 +44,13 @@ export class NewCountryComponent implements OnInit {
 
     this.countryService.Update(country).subscribe({
       next:data=>{
-        console.log("success")
-      },
-      error:err=>{
-        console.log("error")
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Country Updated Successfuly!",
+          showConfirmButton: false,
+          timer: 1500
+        });
       }
     })
   }
@@ -64,11 +64,13 @@ export class NewCountryComponent implements OnInit {
     this.countryService.Insert(country).subscribe({
     next:data=>{
       debugger
-      console.log("success")
-    },
-    error:err=>{
-      debugger
-      console.log("error")
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Country Saved Successfuly!",
+        showConfirmButton: false,
+        timer: 1500
+      });
     }
       })
   }

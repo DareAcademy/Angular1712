@@ -24,7 +24,7 @@ export class UserListComponent implements OnInit {
   }
 
   AddRole(id:string){
-    this.router.navigate(['/UserRole'],{queryParams:{Id:id}})
+    this.router.navigate(['/dashboard/UserRole'],{queryParams:{Id:id}})
   }
 
 }

@@ -2,6 +2,7 @@ import { Component ,OnInit} from '@angular/core';
 import { CountryService } from '../Servicies/CountryService';
 import { Country } from '../Models/Country';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-country-list',
@@ -20,22 +21,35 @@ ngOnInit(): void {
 }
 
 Delete(Id:number){
-debugger
-this.countryService.Delete(Id).subscribe({
-  next:data=>{
-    console.log("Success")
-    this.fillCountryList()
-   
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, delete it!"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.countryService.Delete(Id).subscribe({
+        next:data=>{
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success"
+          });
+          this.fillCountryList()
+        }
+      })
+    
+    }
+  });
 
-  },
-  error:err=>{
-    console.log("Error")
-  }
-})
+
 }
 
 Edit(id:number){
-this.router.navigate(['/NewCountry'],{queryParams:{Id:id}});
+this.router.navigate(['/dashboard'],{queryParams:{Id:id}});
 }
 
 fillCountryList(){
@@ -43,9 +57,6 @@ fillCountryList(){
     next:data=>{
       debugger
       this.liCountry=data
-    },
-    error:err=>{
-      console.log("error")
     }
   })
 }

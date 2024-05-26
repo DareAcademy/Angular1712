@@ -23,8 +23,13 @@ this.accountService.Login(signIn).subscribe({
   next:data=>{
     debugger
     localStorage.setItem("SecurityKey",data.token)
-    this.router.navigate(['/dashboard'])
-    console.log("success")
+    this.accountService.getUserRoles(this.username).subscribe({
+      next:data=>{
+        debugger
+        localStorage.setItem("Roles",data)
+        this.router.navigate(['/dashboard'])
+      }
+    })
   },
   error:err=>{
     console.log("error")

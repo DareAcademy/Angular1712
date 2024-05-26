@@ -5,36 +5,45 @@ import { Observable } from "rxjs";
 import { Role } from "../Models/Role";
 import { UserRolesDTO } from "../Models/UserRolesDTO";
 import { SignInDTO } from "../Models/SignInDTO";
+import { environment } from "src/environments/environment.development";
 
 @Injectable()
 export class AccountService{
-    constructor(private http:HttpClient){}
+    baseUrl=''
+    constructor(private http:HttpClient){
+        this.baseUrl=environment.APIURL
+    }
 
     CreateAccount(user:SignUp):Observable<any>{
         debugger
-    return this.http.post('http://localhost/Clinic1712Angular/api/Accounts/SignUp',user);
+    return this.http.post(this.baseUrl+'/api/Accounts/SignUp',user);
     }
 
     Login(signIn:SignInDTO):Observable<any>{
         debugger
-        return this.http.post('http://localhost/Clinic1712Angular/api/Accounts/Login',signIn);
+        return this.http.post(this.baseUrl+'/api/Accounts/Login',signIn);
     }
 
     AddRole(role:Role):Observable<any>{
-        return this.http.post('http://localhost/Clinic1712Angular/api/Accounts/AddRole',role);
+        return this.http.post(this.baseUrl+'/api/Accounts/AddRole',role);
     }
 
     UserList():Observable<any>{
-        return this.http.get('http://localhost/Clinic1712Angular/api/Accounts/UserList');
+        return this.http.get(this.baseUrl+'/api/Accounts/UserList');
     }
 
     UserRole(id:string):Observable<any>{
         debugger
-        return this.http.get('http://localhost/Clinic1712Angular/api/Accounts/UserRole?UserId='+id);
+        return this.http.get(this.baseUrl+'/api/Accounts/UserRole?UserId='+id);
     }
 
     UpdateRole(userRoles:UserRolesDTO[]):Observable<any>{
         debugger
-        return this.http.post('http://localhost/Clinic1712Angular/api/Accounts/UpdateRole',userRoles);
+        return this.http.post(this.baseUrl+'/api/Accounts/UpdateRole',userRoles);
+    }
+
+    getUserRoles(username:string):Observable<any>{
+        debugger
+        return this.http.get(this.baseUrl+'/api/Accounts/GetUserRoles?username='+username);
     }
 }

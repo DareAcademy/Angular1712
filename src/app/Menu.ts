@@ -6,7 +6,7 @@ export const menu=[
     },
     {
         path:'/dashboard/CountryList',
-        text:'Country List1',
+        text:'Country List',
         roles:['Sales']
     },
     {
